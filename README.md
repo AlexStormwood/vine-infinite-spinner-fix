@@ -4,9 +4,9 @@ Browser extension for Chrome that fixes the infinite spinner bug on Amazon Vine.
 
 This extension does not collect, store or transmit any data. It has a single purpose: to fix the infinite spinner bug on Amazon Vine.
 
-It will work for any Chromium browser (Chrome, Brave, Kiwi etc). It does also work for Firefox though I haven't published it to the Firefox Add-ons store.
+It will work for any Chromium browser (Chrome, Brave, Kiwi etc).
 
-If there is demand for Firefox then I will sort it. Otherwise you can build from source and install it locally.
+Firefox version coming soon.
 
 ## Install
 
@@ -29,7 +29,3 @@ You can choose to build from source and install the extension locally instead of
 5. Enable Developer Mode in the top right corner
 6. Click `Load Unpacked` in the top left corner
 7. Select the `dist` folder in the cloned repository
-
-## Install From Source (Firefox)
-
-Follow the steps above to build the source. Search online for how to install local addons in Firefox.
