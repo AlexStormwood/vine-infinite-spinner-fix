@@ -1,0 +1,73 @@
+name: Build, Package, and Release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract Version from manifest.json
+        run: |
+          VERSION=$(jq -r '.version' "src/manifest.json")
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Check if Tag Already Exists
+        run: |
+          TAG_EXISTS=$(git ls-remote --tags origin refs/tags/v${{ env.VERSION }} | wc -l)
+          if [ "$TAG_EXISTS" -ne "0" ]; then
+            echo "Tag v${{ env.VERSION }} already exists!"
+            exit 1
+          else
+            echo "Tag v${{ env.VERSION }} does not exist, proceeding..."
+          fi
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Project
+        run: npm run build
+
+      - name: Rename dist Folder
+        run: mv dist "Vine Infinite Spinner Fix"
+
+      - name: Zip the Folder for Chrome
+        run: zip -r "Vine-Infinite-Spinner-Fix-Chrome.zip" "Vine Infinite Spinner Fix"
+
+      - name: Modify manifest for Firefox
+        run: |
+          jq '. + {browser_specific_settings: {gecko: {id: "{36f38d84-1b52-4a8c-97c9-4d2763b19ce7}", strict_min_version: "109.0"}}}' "Vine Infinite Spinner Fix/manifest.json" > temp.json
+          mv temp.json "Vine Infinite Spinner Fix/manifest.json"
+
+      - name: Zip Contents for Firefox Directly
+        run: |
+          cd "Vine Infinite Spinner Fix"
+          zip -r "../Vine-Infinite-Spinner-Fix-Firefox.zip" *
+
+      - name: Prepare Release Details
+        run: |
+          echo "tag_name=v$VERSION" >> $GITHUB_OUTPUT
+          echo "release_name=Release v$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.VERSION }}
+          name: Release v${{ env.VERSION }}
+          files: |
+            Vine-Infinite-Spinner-Fix-Chrome.zip
+            Vine-Infinite-Spinner-Fix-Firefox.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
