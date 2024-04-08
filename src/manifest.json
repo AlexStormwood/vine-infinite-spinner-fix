@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Vine Infinite Spinner Fix",
   "description": "Fixes the infinite spinner bug on Amazon Vine.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "action": {
     "default_title": "Vine Infinite Spinner Fix",
     "default_icon": "icon-48.png"
