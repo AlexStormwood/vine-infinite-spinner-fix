@@ -6,11 +6,10 @@ window.fetch = async (...args): Promise<Response> => {
   if (typeof args[0] === 'string' && args[0].startsWith("api/recommendations")) {
     try {
       const jsonData: any = await response.clone().json();
-      if (jsonData.result && jsonData.result.variations) {
-        
+      if (jsonData.result && jsonData.result.variations) {        
         let fixed = false;
+        
         jsonData.result.variations = jsonData.result.variations.map((variation: any) => {
-
           if (!variation.dimensions || Object.keys(variation.dimensions).length === 0) {
             variation.dimensions = { asin_no: variation.asin };
             fixed = true;

@@ -9,38 +9,35 @@
   },
   "icons": {
     "16": "icon-16.png",
-		"32": "icon-32.png",
-		"48": "icon-48.png",
-		"128": "icon-128.png"
-	},
+    "32": "icon-32.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  },
   "web_accessible_resources": [
-		{
-			"resources": [
-				"fix.js",
-        "spinner.png"
-			],
-			"matches": [
-				"*://*.amazon.co.uk/*",
-				"*://*.amazon.es/*",
-				"*://*.amazon.co.jp/*",
-				"*://*.amazon.de/*",
-				"*://*.amazon.fr/*",
+    {
+      "resources": ["fix.js", "spinner.png"],
+      "matches": [
+        "*://*.amazon.co.uk/*",
+        "*://*.amazon.es/*",
+        "*://*.amazon.co.jp/*",
+        "*://*.amazon.de/*",
+        "*://*.amazon.fr/*",
         "*://*.amazon.ca/*",
-				"*://*.amazon.com/*"
+        "*://*.amazon.com/*"
       ]
-		}
-	],
+    }
+  ],
   "content_scripts": [
     {
       "matches": [
-				"*://*.amazon.co.uk/vine/*",
-				"*://*.amazon.com/vine/*",
+        "*://*.amazon.co.uk/vine/*",
+        "*://*.amazon.com/vine/*",
         "*://*.amazon.ca/vine/*",
-				"*://*.amazon.de/*/vine/*",
-				"*://*.amazon.co.jp/vine/*",
-				"*://*.amazon.de/vine/*",
-				"*://*.amazon.fr/vine/*",
-				"*://*.amazon.es/vine/*"
+        "*://*.amazon.de/*/vine/*",
+        "*://*.amazon.co.jp/vine/*",
+        "*://*.amazon.de/vine/*",
+        "*://*.amazon.fr/vine/*",
+        "*://*.amazon.es/vine/*"
       ],
       "js": ["contentScript.js"],
       "css": ["styles.css"],
