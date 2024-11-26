@@ -23,7 +23,8 @@
         "*://*.amazon.de/*",
         "*://*.amazon.fr/*",
         "*://*.amazon.ca/*",
-        "*://*.amazon.com/*"
+        "*://*.amazon.com/*",
+        "*://*.amazon.com.au/*"
       ]
     }
   ],
@@ -37,7 +38,8 @@
         "*://*.amazon.co.jp/vine/*",
         "*://*.amazon.de/vine/*",
         "*://*.amazon.fr/vine/*",
-        "*://*.amazon.es/vine/*"
+        "*://*.amazon.es/vine/*",
+        "*://*.amazon.com.au/vine/*"
       ],
       "js": ["contentScript.js"],
       "css": ["styles.css"],
